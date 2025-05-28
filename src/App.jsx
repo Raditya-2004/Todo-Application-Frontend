@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "./components/Navibar";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import Todo from "./components/Todo";
 import Profile from "./components/Profile";
+import Todo from "./components/Todo";
+import Navbar from "./components/Navibar";
+
+
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   const fetchProfile = async () => {
+    // https://todo-application-backend-t41q.onrender.com
     try {
       const res = await fetch("https://todo-application-backend-t41q.onrender.com/api/users/profile", {
         credentials: "include",
@@ -21,10 +23,8 @@ function App() {
       } else {
         setUser(null);
       }
-    } catch (error) {
+    } catch {
       setUser(null);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -40,27 +40,26 @@ function App() {
     setUser(null);
   };
 
-  if (loading) {
-    return <div>Loading...</div>; // or spinner component
+  if (!user) {
+    return (
+      <BrowserRouter>
+        <Navbar user={null} />
+        <Routes>
+          <Route path="/login" element={<Login onLogin={fetchProfile} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </BrowserRouter>
+    );
   }
 
   return (
     <BrowserRouter>
       <Navbar user={user} onLogout={logout} />
       <Routes>
-        {!user ? (
-          <>
-            <Route path="/login" element={<Login onLogin={fetchProfile} />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="*" element={<Navigate to="/login" />} />
-          </>
-        ) : (
-          <>
-            <Route path="/tasks" element={<Todo />} />
-            <Route path="/profile" element={<Profile user={user} />} />
-            <Route path="*" element={<Navigate to="/tasks" />} />
-          </>
-        )}
+        <Route path="/tasks" element={<Todo />} />
+        <Route path="/profile" element={<Profile user={user} />} />
+        <Route path="*" element={<Navigate to="/tasks" />} />
       </Routes>
     </BrowserRouter>
   );
