@@ -12,7 +12,7 @@ export default function Signup() {
     e.preventDefault();
     setError("");
     try {
-      const res = await fetch("http://localhost:3000/api/users/signup", {
+      const res = await fetch("https://todo-application-backend-t41q.onrender.com/api/users/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

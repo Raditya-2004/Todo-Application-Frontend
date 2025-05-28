@@ -7,7 +7,7 @@ const Todo = () => {
   const [editingId, setEditingId] = useState(null);
   const [editInput, setEditInput] = useState("");
 
-  const API_URL = "http://localhost:3000/api/tasks";
+  const API_URL = "https://todo-application-backend-t41q.onrender.com/api/tasks";
 
   // Fetch all tasks on mount
   useEffect(() => {

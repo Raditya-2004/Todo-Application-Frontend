@@ -12,7 +12,7 @@ export default function Login({ onLogin }) {
     e.preventDefault();
     setError("");
     try {
-      const res = await fetch("http://localhost:3000/api/users/login", {
+      const res = await fetch("https://todo-application-backend-t41q.onrender.com/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

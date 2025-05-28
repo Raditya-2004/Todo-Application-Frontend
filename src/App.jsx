@@ -12,8 +12,9 @@ function App() {
   const [user, setUser] = useState(null);
 
   const fetchProfile = async () => {
+    // https://todo-application-backend-t41q.onrender.com
     try {
-      const res = await fetch("http://localhost:3000/api/users/profile", {
+      const res = await fetch("https://todo-application-backend-t41q.onrender.com/api/users/profile", {
         credentials: "include",
       });
       if (res.ok) {
@@ -32,7 +33,7 @@ function App() {
   }, []);
 
   const logout = async () => {
-    await fetch("http://localhost:3000/api/users/logout", {
+    await fetch("https://todo-application-backend-t41q.onrender.com/api/users/logout", {
       method: "POST",
       credentials: "include",
     });
