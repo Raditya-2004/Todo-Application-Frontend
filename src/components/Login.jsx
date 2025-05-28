@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Login.module.css"; 
+import styles from "./Login.module.css";
 
 export default function Login({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -18,6 +18,7 @@ export default function Login({ onLogin }) {
         credentials: "include",
         body: JSON.stringify({ username, password }),
       });
+
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Login failed");
 
@@ -31,13 +32,14 @@ export default function Login({ onLogin }) {
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
       <h2 className={styles.heading}>Login</h2>
-      {error && <p className={styles.error}>{error}</p>}
+      {error && <p className={styles.error} aria-live="assertive">{error}</p>}
       <input
         type="text"
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         required
+        autoComplete="username"
         className={styles.inputField}
       />
       <input
@@ -46,6 +48,7 @@ export default function Login({ onLogin }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
+        autoComplete="current-password"
         className={styles.inputField}
       />
       <button type="submit" className={styles.button}>Login</button>

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 export default function Navbar({ user, onLogout }) {
   return (
     <nav
+      role="navigation"
+      aria-label="Main Navigation"
       style={{
         padding: "10px",
         backgroundColor: "#282c34",
@@ -30,6 +32,7 @@ export default function Navbar({ user, onLogout }) {
               Profile
             </Link>
             <button
+              type="button"
               onClick={onLogout}
               style={{
                 cursor: "pointer",

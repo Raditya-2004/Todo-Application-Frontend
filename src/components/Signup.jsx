@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Signup.module.css"; // Import CSS module
+import styles from "./Signup.module.css";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -31,13 +31,14 @@ export default function Signup() {
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
       <h2 className={styles.heading}>Signup</h2>
-      {error && <p className={styles.error}>{error}</p>}
+      {error && <p className={styles.error} aria-live="assertive">{error}</p>}
       <input
         type="text"
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         required
+        autoComplete="username"
         className={styles.inputField}
       />
       <input
@@ -46,6 +47,7 @@ export default function Signup() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
+        autoComplete="new-password"
         className={styles.inputField}
       />
       <button type="submit" className={styles.button}>
