@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Navbar from "./components/Navibar";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import Profile from "./components/Profile";
 import Todo from "./components/Todo";
-import Navbar from "./components/Navbar"; // Confirm your filename is Navbar.js
+import Profile from "./components/Profile";
 
 function App() {
   const [user, setUser] = useState(null);
